@@ -1,0 +1,8 @@
+[project]
+name = "ai-resume-screening-candidate-ranking-system"
+version = "1.0.0"
+description = "FastAPI app for AI resume screening and candidate ranking."
+requires-python = ">=3.10"
+
+[project.scripts]
+app = "backend.app:app"
