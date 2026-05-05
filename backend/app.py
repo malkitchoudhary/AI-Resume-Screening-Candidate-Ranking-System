@@ -6,13 +6,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from .matcher import rank_candidates
-from .resume_parser import extract_resume_text, parse_resume_details
-
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 FRONTEND_DIR = BASE_DIR / "frontend"
-UPLOAD_DIR = BASE_DIR / "backend" / "uploads"
+UPLOAD_DIR = Path("/tmp/uploads") if Path("/tmp").exists() else BASE_DIR / "backend" / "uploads"
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 app = FastAPI(
@@ -60,6 +57,9 @@ async def rank_resumes(
 
     parsed_candidates = []
     errors = []
+
+    from .matcher import rank_candidates
+    from .resume_parser import extract_resume_text, parse_resume_details
 
     for resume in resumes:
         suffix = Path(resume.filename or "").suffix.lower()
