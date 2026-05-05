@@ -5,4 +5,4 @@ description = "FastAPI app for AI resume screening and candidate ranking."
 requires-python = ">=3.10"
 
 [project.scripts]
-app = "backend.app:app"
+app = "app:app"
