@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Resume Screening</title>
+  <link rel="stylesheet" href="/static/style.css" onerror="this.onerror=null;this.href='style.css';">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">AI Resume Screening</p>
+        <h1>Candidate Ranking System</h1>
+        <p class="hero-copy">Upload resumes, paste a job description, and get ranked candidates with match scores, skills, experience, and matched keywords.</p>
+      </div>
+      <div class="hero-stats" aria-label="System flow">
+        <span>Upload</span>
+        <span>Parse</span>
+        <span>Match</span>
+        <span>Rank</span>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <form id="screeningForm" class="input-panel">
+        <label for="jobDescription">Job Description</label>
+        <textarea id="jobDescription" name="jobDescription" placeholder="Paste the job description here..." required></textarea>
+
+        <label for="resumes">Resume Files</label>
+        <div class="upload-box">
+          <input id="resumes" name="resumes" type="file" accept=".pdf,.docx" multiple required>
+          <p>PDF or DOCX, multiple files supported</p>
+        </div>
+
+        <button type="submit" id="rankButton">
+          <span>Rank Candidates</span>
+        </button>
+        <p id="statusMessage" class="status-message" role="status"></p>
+      </form>
+
+      <section class="results-panel" aria-live="polite">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Results</p>
+            <h2>Top 3 Candidates</h2>
+          </div>
+        </div>
+        <div id="topCandidates" class="top-candidates empty-state">Results will appear after screening.</div>
+
+        <div class="section-heading ranking-heading">
+          <div>
+            <p class="eyebrow">Ranking</p>
+            <h2>All Candidates</h2>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Candidate</th>
+                <th>Score</th>
+                <th>Experience</th>
+                <th>Matched Keywords</th>
+              </tr>
+            </thead>
+            <tbody id="rankingTable">
+              <tr>
+                <td colspan="5" class="empty-table">No candidates ranked yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div id="errorList" class="error-list"></div>
+      </section>
+    </section>
+
+    <footer class="site-footer">
+      Made by Malkit Choudhary
+    </footer>
+  </main>
+
+  <script src="/static/script.js" onerror="this.onerror=null;this.src='script.js';"></script>
+</body>
+</html>
